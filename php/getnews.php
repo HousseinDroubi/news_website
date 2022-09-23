@@ -6,8 +6,11 @@ include("connection.php");
 $get_news=$mysqli->prepare("SELECT * FROM news");
 $get_news->execute();
 $array_get_news=$get_news->get_result();
-$resonse=[];
+$response=[];
+$return=[];
 while($a = $array_get_news->fetch_assoc()){
-    $resonse[]=$a;
+    $return['title']=$a['title'];
+    $return['text']=$a['text'];
+    $response[]=$return;
 }
-echo json_encode($resonse);
+echo json_encode($response);
